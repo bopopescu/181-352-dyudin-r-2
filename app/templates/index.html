@@ -1,5 +1,27 @@
 {%extends 'base.html'%}
-{%block title%}home{%endblock%}
+{%block title%}Catalog{%endblock%}
 {%block content%}
-<h1>test</h1>
+<h1>Реестр книг</h1>
+<table class="table bg-light">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">Year</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <th scope="row">{{ loop.index }}</th>
+      <td>{{book.name}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.year}}</td>
+      <td>{{book.sum}}</td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
 {%endblock%}
