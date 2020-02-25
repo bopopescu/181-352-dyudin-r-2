@@ -20,8 +20,13 @@
       <td>{{book.author}}</td>
       <td>{{book.year}}</td>
       <td>{{book.sum}}</td>
+      {% if current_user.login %}
+      <td><a href="/registration"><div class="badge badge-warning text-wrap" style="width: 6rem;">Выдать книгу</div></a></td>
+      {%endif%}
     </tr>
     {%endfor%}
   </tbody>
 </table>
+
+
 {%endblock%}
