@@ -37,8 +37,10 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Сatalog</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+        <li class="nav-item active">
+          {%if current_user.login%}
+          <a class="nav-link" href="/jour">Journal</a>
+          {%endif%}
         </li>
       </ul>
       <ul class="navbar-nav">
@@ -51,7 +53,7 @@
             </li>
         {%else%}
         <li class="nav-item active">
-            <a class="nav-link" href="/users/{{ current_user.id }}"> {{ current_user.fio }} </a>
+            <a class="nav-link"> {{ current_user.fio }} </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/logout">Выйти </a>

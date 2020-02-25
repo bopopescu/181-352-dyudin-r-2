@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%block title%}Add{%endblock%}
+{%block content%}
+<h1></h1>
+<form method="POST">
+<div class="form-group col-5">
+  <label>Книга</label>
+  <select class="form-control">
+    {%for book in books%}
+    <option>{{book.name}} by {{book.author}}</option>
+    {%endfor%}
+  </select>
+  <button type="submit" class="btn btn-warning col-4 mt-3">Submit</button>
+</div>
+</form>
+{%endblock%}
