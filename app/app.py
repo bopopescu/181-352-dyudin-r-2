@@ -36,8 +36,10 @@ def login_is_exist(login):
     return True
 
 def get(query,fetch):
-    '''parametr query is making a string for database\n
-       parametr fetch choosing between all and one by 0 and 1'''
+    '''parametr query is making a string for database\n\
+       \nparametr fetch choosing between all and one by 0 and 1\n
+       actualy after 4 hours i gotta say that you better\n
+       not to use this function with fetchone()'''
     cursor = mysql.connection().cursor(named_tuple=True)
     cursor.execute(query)
     fetchDict = {
@@ -105,14 +107,16 @@ def jour():
     return render_template('jour.html',jour=jour)
 
 @app.route('/add', methods=['GET','POST'])
+@flask_login.login_required
 def add():
-    # if request.method == 'GET':
+    if request.args.get('id'):
+        cursor = mysql.connection().cursor(named_tuple=True)
+        cursor.execute('select id, name, author, year, sum from book where id=%s;',(request.args.get('id'),))
+        book = cursor.fetchone()
+        cursor.close()
+        return render_template('add.html', book=book)
+
     books = get('select * from book',0)
-
-    # if request.method == 'POST':
-        # if request.form.get('select'): 
-        # test = request.form.get('select')
-
     return render_template('add.html', books=books)
 
 @app.route('/logout')

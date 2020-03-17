@@ -1,16 +1,32 @@
 {%extends 'base.html'%}
 {%block title%}Add{%endblock%}
 {%block content%}
-<h1></h1>
+<h1>Выдача книг</h1>
+{%if book%}
+<div class="mt-5 p-3 rounded-lg container col-6 bg-white border border-warning">
+<h3 class="">Название: {{book.name}}</h3>
+<h3>Автор: {{book.author}}</h3>
+<h3>Год выпуска: {{book.year}}</h3>
+<h3>В наличии: {{book.sum}}</h3>
+<div class="col d-flex justify-content-between">
+<button type="submit" class="btn btn-warning font-weight-bolder">Выдать книгу {{current_user.fio}}</button>
+<a class="btn btn-danger font-weight-bolder" href="/add">Выбрать другую книгу</a>
+</div>
+</div>
+{%else%}
 <form method="POST">
 <div class="form-group col-5">
-  <label>Книга</label>
+<label>Книга</label>
   <select class="form-control">
     {%for book in books%}
     <option>{{book.name}} by {{book.author}}</option>
     {%endfor%}
   </select>
-  <button type="submit" class="btn btn-warning col-4 mt-3">Submit</button>
+  <div class="mt-2 col d-flex justify-content-between">
+    <button type="submit" class="btn btn-warning">Выдать книгу {{current_user.fio}}</button>
+    <a class="btn btn-danger" href="/">Реестр книг</a>
+    </div>
 </div>
 </form>
+{%endif%}
 {%endblock%}
